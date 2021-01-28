@@ -1,7 +1,6 @@
 <template>
   <div class="m-auto">
     <h1 class="text-2xl text-center">Welcome to herros {{this.herosCount}}</h1>
-    <p v-if="isShowing" v-once>{{count}}</p>
     <ul>
       <li class="flex justify-between" v-for="(hero, index) in dcHerro" v-bind:key="hero.name">
         <div>
