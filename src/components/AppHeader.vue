@@ -13,6 +13,7 @@ mx-4 px-4 py-2">
                     {title: "Dc Heros", to: "/dc-heros" },
                     {title: "Calendar", to: "/calendar" },
                     {title: "Markdown", to: "/markdown" },
+                    {title: "Slider Caroucel", to: "/slider" },
                 ]
             }
         }
