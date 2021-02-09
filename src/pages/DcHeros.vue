@@ -2,7 +2,7 @@
   <div class="m-auto">
     <h1 class="text-2xl text-center">Welcome to herros {{this.herosCount}}</h1>
     <ul>
-      <li class="flex justify-between" v-for="(hero, index) in dcHerro" v-bind:key="hero.name">
+      <li class="flex justify-between" v-for="(hero, index) in dcHeros" v-bind:key="hero.name">
         <div>
           {{hero.name}}
         </div>
@@ -10,63 +10,51 @@
       </li>
     </ul>
     <form class="mt-10" @submit.prevent="addHero">
-      <input class="border rounded-lg" v-model="newHerro"/>
-      <button class="border rounded bg-gradient-to-r from-red-700 to-pink-500 text-sm text-white" @click="addHero">Add Herro</button>
+      <input class="border rounded-lg" v-model="newHero" placeholder="Enter new hero name!"
+        ref="newHeroRef"/>
+      <button class="border rounded bg-gradient-to-r from-red-700 to-pink-500 text-sm text-white" type="submit">Add Herro</button>
     </form>
   </div>
 </template>
 
 
 <script>
+  import {ref, onMounted, computed } from "vue";
   export default {
-computed: {
-    herosCount(){
-      return this.dcHerro.length;
-    },
-    randC(){
-      return Math.random();
-    },
-    fullName: {
-      get(){
-        return `Full name is ${this.firstname} ${this.lastName}`;
-      },
-      set(fullname){
-        const values = fullname.split(" ");
-        this.firstname = values[0];
-        this.lastName = values[1];
-      }
-    }
-  },
-  data(){
-    return {
-      newHerro: 'test',
-      dcHerro: [
+  setup() {
+    const newHeroRef = ref("");
+    const newHero = ref("");
+    const dcHeros = ref ([
         {name: 'Hero1'},
         {name: 'Hero2'},
         {name: 'Hero3'},
         {name: 'Hero4'}
-      ],
-    };
-  },
-  methods: {
-    addHero(){
-      if(this.newHerro !== ''){
+      ]);
 
-        this.dcHerro.push({name: this.newHerro});
+    onMounted( () => {
+      newHeroRef.value.focus();
+    });
+
+    const herosCount = computed(
+      {
+        get: () => dcHeros.value.length        
       }
-    },
-    remove(index){
-      console.log('test' +  index);
-      this.dcHerro = this.dcHerro.filter((hero, i) => i != index);
-    },
-    randM(){
-      return Math.random();
-    },
-    setFullName(){
-      this.fullName = 'Test Test';
-    }
-  },
+    );
 
+    function remove(index) {
+      dcHeros.value = dcHeros.value.filter((hero, i) => i != index);
+    }
+
+    function addHero() {
+      
+      if ( newHero.value !== " ") {
+        console.log("test");
+        dcHeros.value.unshift({ name: newHero.value });
+        newHero.value = "";
+      }
+    }
+    return { dcHeros, newHero, remove, addHero, newHeroRef, herosCount };
+  }
 }
 </script>
 
