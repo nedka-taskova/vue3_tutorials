@@ -5,6 +5,7 @@ import Calendar from "./pages/Calendar";
 import Markdown from "./pages/Markdown";
 import Slider from "./pages/Slider";
 import Calculator from "./pages/Calculator";
+import Modal from "./pages/ReusableModal"
 
 const routes = [
     { path: '/' , component: Home },
@@ -13,6 +14,7 @@ const routes = [
     { path: '/markdown' , component: Markdown },
     { path: '/slider' , component: Slider },
     { path: '/calculator' , component: Calculator },
+    { path: '/modal-reusable' , component: Modal },
 ]
 
 const router = createRouter({
