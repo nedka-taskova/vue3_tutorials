@@ -5,7 +5,8 @@ import Calendar from "./pages/Calendar";
 import Markdown from "./pages/Markdown";
 import Slider from "./pages/Slider";
 import Calculator from "./pages/Calculator";
-import Modal from "./pages/ReusableModal"
+import Modal from "./pages/ReusableModal";
+import Chat from "./pages/Chat"
 
 const routes = [
     { path: '/' , component: Home },
@@ -15,6 +16,7 @@ const routes = [
     { path: '/slider' , component: Slider },
     { path: '/calculator' , component: Calculator },
     { path: '/modal-reusable' , component: Modal },
+    { path: '/chat' , component: Chat },
 ]
 
 const router = createRouter({

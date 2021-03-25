@@ -4,7 +4,7 @@ mx-4 px-4 py-2">
     <router-link v-for="item in list" :key="item.to" class="mx-2" :to="item.to">{{item.title}}</router-link>
     <!-- Emit custom event with $emit on button click  -->
     <!-- Only thos component could do something with this event -->
-    <button v-if="isLoggedIn" class="mx-2" @click="logout">Logout</button>
+    <button v-if="store.isLoggedIn" class="mx-2" @click="logout">Logout</button>
     <button v-else class="mx-2" @click="$emit('open-login-modal')">Login</button>
 </nav>
 </template>
@@ -12,10 +12,6 @@ mx-4 px-4 py-2">
 <script>
     import firebase from "../utilities/firebase"
     export default {
-        props: { isLoggedIn: {
-            type: Boolean, reqiured: true
-            }
-        },
         data(){
             return {
                 list: [
@@ -25,10 +21,16 @@ mx-4 px-4 py-2">
                     {title: "Slider Caroucel", to: "/slider" },
                     {title: "Calculator", to: "/calculator" },
                     {title: "Modal", to: "/modal-reusable" },
+                    {title: "Chat", to: "/chat" },
                 ]
+            };
+
+        },
+        computed: {
+            isLoggedIn() {
+                return this.$store.isLoggedIn;
             }
         },
-
         methods: {
             logout() {
                 firebase.auth().signOut()
